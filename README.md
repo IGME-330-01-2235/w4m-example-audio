@@ -1,11 +1,7 @@
-# Basics : Play/Pause, Volume, Time
+# There Are Actually Four Tracks
 
-Running this project displays an interface with a:
+Haha, I tricked you (maybe?).
 
-* Seek slider - which displays and adjusts playback position 
-* Volume slider - which displays and adjusts audio volume
-* Play/Pause button - which starts/stops playback
+Those playback controls are actually controlling four separate audio track, each one a single voice part (Tenor, Lead, Baritone, Base) of a Barbershop Quartet.
 
-Most of the interesting things are in `index.html` and `main.ts` (extensive comments and links to documentation here!).
-
-Though, there is also some flexbox fun in `styles.css`.
+This branch isn't all that much different from `audio-01` ... it just displays the controls for the individual parts.

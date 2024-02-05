@@ -1,9 +1,11 @@
 export class Part {
   audioContext: AudioContext;
-  audioElement: HTMLAudioElement; // a reference to the <audio> element in index.html
+  audioElement: HTMLAudioElement;
   sourceNode: MediaElementAudioSourceNode;
 
-  markup: HTMLDivElement; // the parent HTML element, gets appended to section#parts in index.html
+  gainNode: GainNode; // individual part volume control!
+
+  markup: HTMLDivElement;
   vocalRange: string;
 
   constructor(vocalRange: string, audioElementId: string, audioContext: AudioContext) {
@@ -12,26 +14,48 @@ export class Part {
 
     this.sourceNode = audioContext.createMediaElementSource(this.audioElement)
 
+    // set up the local GainNode
+    this.gainNode = audioContext.createGain()
+    this.gainNode.gain.value = 1
+
     this.vocalRange = vocalRange;
     this.markup = document.createElement('div');
 
     this.expandMarkup();
   }
 
-  // creates and appends all children of the Part
   expandMarkup(): void {
-    this.markup.className = 'control';
+    this.markup.className = 'control part';
 
     const h2 = document.createElement('h2')
     h2.innerText = this.vocalRange;
 
+    // add some more HTML to control it
+    const div = document.createElement('div')
+    const label = document.createElement('label')
+    label.innerText = 'Volume'
+    div.appendChild(label)
+
+    const input = document.createElement('input')
+    input.type = 'range'
+    input.min = '0'
+    input.max = '4'
+    input.step = '0.01'
+    input.value = '1'
+    div.appendChild(input)
+
+    // with a dedicated 'input' listener
+    input.addEventListener('input', () => {
+      this.gainNode.gain.value = parseFloat(input.value);
+    })
+
     this.markup.appendChild(h2)
+    this.markup.appendChild(div)
   }
 
-  // will be used by main.ts to route this Part's output to the audioContext.destination
-  // (first, passing it through any global effect nodes)
-  patch(): MediaElementAudioSourceNode {
-    return this.sourceNode;
+  patch(): AudioNode {
+    // and connect it as part of the patch chain!
+    return this.sourceNode.connect(this.gainNode);
   }
   
   play(): void {
@@ -42,7 +66,6 @@ export class Part {
     this.audioElement.pause()
   }
 
-  // skips to a particular playback position (in seconds)
   timeTo(timeInSeconds: number): void {
     this.audioElement.currentTime = timeInSeconds;
   }

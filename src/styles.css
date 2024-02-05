@@ -30,3 +30,12 @@ h2 {
   gap: 12px;
   align-items: center;
 }
+
+.control.part {
+  gap: 12px;
+  width: 200px;
+}
+
+.part label {
+  font-size: 12px;
+}

@@ -1,7 +1,9 @@
-# There Are Actually Four Tracks
+# Refactor : Part Setup
 
-Haha, I tricked you (maybe?).
+I got tired of writing everything four times. So I made a `Part` class to encapsulate the behavior of a voice part.
 
-Those playback controls are actually controlling four separate audio track, each one a single voice part (Tenor, Lead, Baritone, Base) of a Barbershop Quartet.
+Check out the [diff of main.ts]() to see what the refactor looks like.
 
-This branch isn't all that much different from `audio-01` ... it just displays the controls for the individual parts.
+Check out [src/Part.ts] to see what the class looks like.
+
+This refactor sets us up to do interesting things with the markup and more effects nodes (without having to repeat ourselves four times). Note, I removed the earlier comments and left new ones for the things that have changed.

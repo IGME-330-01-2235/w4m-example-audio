@@ -1,13 +1,11 @@
-# w4m-example-audio
-Example Audio File Playback
+# Basics : Play/Pause, Volume, Time
 
-Story of the Rose (Heart of my Heart)
-(vocals by [Tim Waurick](https://en.wikipedia.org/wiki/Tim_Waurick))
+Running this project displays an interface with a:
 
-To see actual files, you'll need to checkout a branch (`git checkout audio-01`, for instance).
+* Seek slider - which displays and adjusts playback position 
+* Volume slider - which displays and adjusts audio volume
+* Play/Pause button - which starts/stops playback
 
-| Branch | Description |
-| -----: | ----------- |
-| [audio-01](https://github.com/IGME-330-01-2235/w4m-example-audio/blob/audio-01/README.md) | Basics : Play/Pause, Volume, Time |
-| [audio-02](https://github.com/IGME-330-01-2235/w4m-example-audio/blob/audio-02/README.md) | There Are Actually Four Tracks |
-| [audio-03](https://github.com/IGME-330-01-2235/w4m-example-audio/blob/audio-03/README.md) | Refactor : Part Setup |
+Most of the interesting things are in `index.html` and `main.ts` (extensive comments and links to documentation here!).
+
+Though, there is also some flexbox fun in `styles.css`.

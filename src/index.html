@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Audio API Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <script type="module" src="./main.ts"></script>
+  </head>
+  <body class="off">
+    
+    <section class="controls">
+      <div class="control audio"><label>Tenor</label><audio controls id="tenor-audio" src="./mp3/heart_of_my_heart/tenor.mp3"></audio></div>
+      <div class="control audio"><label>Lead</label><audio controls id="lead-audio" src="./mp3/heart_of_my_heart/lead.mp3"></audio></div>
+      <div class="control audio"><label>Baritone</label><audio controls id="baritone-audio" src="./mp3/heart_of_my_heart/baritone.mp3"></audio></div>
+      <div class="control audio"><label>Bass</label><audio controls id="bass-audio" src="./mp3/heart_of_my_heart/bass.mp3"></audio></div>
+    </section>
+
+    <section class="controls">
+      <div class="control">
+        <label>Seek</label>
+        <input type="range" id="main-seek-slider" min="0" max="0.5" value="0" step="0.01" />
+      </div>
+      <div class="control">
+        <label>Volume</label>
+        <input type="range" id="main-volume-slider" min="0" max="0.5" value="0.5" step="0.01" />
+      </div>
+      <div class="control">
+        <button id="play-button" data-playing="false" role="switch" aria-checked="false">Play</button>
+      </div>
+    </section>
+  </body>
+</html>

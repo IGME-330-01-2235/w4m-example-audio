@@ -4,6 +4,8 @@ Example Audio File Playback
 Story of the Rose (Heart of my Heart)
 (vocals by [Tim Waurick](https://en.wikipedia.org/wiki/Tim_Waurick))
 
+To see actual files, you'll need to checkout a branch (`git checkout audio-01`, for instance).
+
 | Branch | Description |
 | -----: | ----------- |
 | [audio-01](https://github.com/IGME-330-01-2235/w4m-example-audio/blob/audio-01/README.md) | Basics : Play/Pause, Volume, Time |

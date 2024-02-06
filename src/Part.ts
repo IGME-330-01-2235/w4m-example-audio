@@ -1,27 +1,72 @@
+import { Dragger } from "./Dragger";
+
+export interface Coordinates {
+  x: number,
+  y: number,
+  z: number,
+}
+
 export class Part {
   audioContext: AudioContext;
   audioElement: HTMLAudioElement;
   sourceNode: MediaElementAudioSourceNode;
 
-  gainNode: GainNode; // individual part volume control!
+  gainNode: GainNode;
+  pannerNode: PannerNode; // oh look, a new type of Node
 
   markup: HTMLDivElement;
   vocalRange: string;
 
-  constructor(vocalRange: string, audioElementId: string, audioContext: AudioContext) {
+  dragger: Dragger; // a reference to the dragger placeholder
+
+  constructor(vocalRange: string, audioElementId: string, audioContext: AudioContext, dragger: Dragger) {
     this.audioContext = audioContext;
     this.audioElement = document.querySelector(audioElementId) as HTMLAudioElement;
 
     this.sourceNode = audioContext.createMediaElementSource(this.audioElement)
 
-    // set up the local GainNode
     this.gainNode = audioContext.createGain()
     this.gainNode.gain.value = 1
+
+    this.dragger = dragger; // connect the dragger
+    this.dragger.updateLabel(vocalRange) // tell it which part it's associated with
+
+    // So much configuration in the Panner...
+    this.pannerNode = new PannerNode(audioContext, {
+      panningModel: 'HRTF', // "Head-Related Transfer Function" - mathematical model of audio influence of the human head
+      distanceModel: 'linear', // fall-off / fade-out function
+
+      positionX: dragger.coordinates.x, // Where is the source at?
+      positionY: dragger.coordinates.y, // this will be updated as we drag things around
+      positionZ: dragger.coordinates.z, // we're going to mostly ignore z
+
+      orientationX: 0, // What direction is the source pointing?
+      orientationY: 1, // (as a unit vector)
+      orientationZ: 0, // directionality is important
+
+      refDistance: 1, // scales the world units if necessary
+      maxDistance: 10000, // sets the furthest distance away something is still audible
+      rolloffFactor: 1, // how quickly does the volume reduce as moving away
+
+      coneInnerAngle: 120, // See this diagram : https://www.w3.org/TR/webaudio/#Spatialization-sound-cones
+      coneOuterAngle: 180 ,
+      coneOuterGain: 0.2,
+    })
+
+    // Give the dragger a callback to update the panner position on drags
+    this.dragger.registerUpdate(this.onNewCoordinates)
 
     this.vocalRange = vocalRange;
     this.markup = document.createElement('div');
 
     this.expandMarkup();
+  }
+
+  onNewCoordinates = (coordinates: Coordinates): void => {
+    // update the pannerNode position with the coordinates of the dragger
+    this.pannerNode.positionX.value = coordinates.x;
+    this.pannerNode.positionY.value = coordinates.y;
+    this.pannerNode.positionZ.value = coordinates.z;
   }
 
   expandMarkup(): void {
@@ -54,8 +99,8 @@ export class Part {
   }
 
   patch(): AudioNode {
-    // and connect it as part of the patch chain!
-    return this.sourceNode.connect(this.gainNode);
+    // It's just another effect on the chain.
+    return this.sourceNode.connect(this.gainNode).connect(this.pannerNode);
   }
   
   play(): void {

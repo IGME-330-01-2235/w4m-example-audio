@@ -39,3 +39,17 @@ h2 {
 .part label {
   font-size: 12px;
 }
+
+.drags {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: black;
+  position: fixed;
+}
+
+.drags p {
+  position: relative;
+  top: 50px;
+  text-align: center;
+}

@@ -1,7 +1,9 @@
-# Individual Part Volumes
+# Positional Audio
 
-Now we can reap the benefits of the refactor.
+Now we'll add spatial audio. There's a new draggable element for each vocal part, and the listener.
 
-In `Part.ts` we can add a GainNode, which will control the volume for that specific part. We also add some extra HTML in `expandMarkup()` to make a label, range input, and event listener for the Part.
+One might have been tempted to define the dragging behavior as part of the `Part` class, but then it would be tightly coupled to the `Part`. Making `Dragger` its own class lets us re-use it for the Listener / Ears positioning.
 
-And because we did all this in the class, we only had to write it once for all four parts!
+`Part` does get a new `PannerNode` to configure how the sound behaves in the scene.
+
+`main.ts` sets up the AudioContext to have a listener "Ears" of the application.

@@ -28,10 +28,10 @@ document.querySelectorAll<HTMLDivElement>('.drags').forEach((dragger, index) => 
 const audioContext = new AudioContext()
 
 const parts: Part[] = [
-  new Part('Tenor', '#tenor-audio', audioContext, draggers[0]),
-  new Part('Lead', '#lead-audio', audioContext, draggers[1]),
-  new Part('Bari', '#baritone-audio', audioContext, draggers[2]),
-  new Part('Bass', '#bass-audio', audioContext, draggers[3]),
+  new Part('Buddy', '#tenor-audio', audioContext, draggers[0]),
+  new Part('Pal', '#lead-audio', audioContext, draggers[1]),
+  new Part('Friend', '#baritone-audio', audioContext, draggers[2]),
+  new Part('Guy', '#bass-audio', audioContext, draggers[3]),
 ];
 
 const mainAudioElement = parts[0].audioElement;

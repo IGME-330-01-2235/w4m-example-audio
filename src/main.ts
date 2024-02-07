@@ -8,6 +8,7 @@ const mainSeekSlider = document.querySelector('#main-seek-slider') as HTMLInputE
 
 // Parent element of all Part.markup elements
 const partsMarkup = document.querySelector('#parts') as HTMLElement;
+const display = document.querySelector('#display') as HTMLElement;
 
 const audioContext = new AudioContext()
 
@@ -35,6 +36,7 @@ let duration = -1;
 parts.forEach((part) => {
   part.patch().connect(gainNode).connect(audioContext.destination)
   partsMarkup.appendChild(part.markup)
+  display.appendChild(part.visualizerMarkup)
 })
 
 

@@ -39,3 +39,11 @@ h2 {
 .part label {
   font-size: 12px;
 }
+
+.bar {
+  display: inline-block;
+  width: 1px;
+  height: 100px;
+  background-color: red;
+  transform-origin: bottom center;
+}

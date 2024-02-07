@@ -12,3 +12,6 @@ To see actual files, you'll need to checkout a branch (`git checkout audio-01`, 
 | [audio-02](https://github.com/IGME-330-01-2235/w4m-example-audio/blob/audio-02/README.md) | There Are Actually Four Tracks |
 | [audio-03](https://github.com/IGME-330-01-2235/w4m-example-audio/blob/audio-03/README.md) | Refactor : Part Setup |
 | [audio-04](https://github.com/IGME-330-01-2235/w4m-example-audio/blob/audio-04/README.md) | Individual Part Volumes |
+| [audio-04b](https://github.com/IGME-330-01-2235/w4m-example-audio/blob/audio-04b/README.md) | Audio Visualizer |
+| [audio-05](https://github.com/IGME-330-01-2235/w4m-example-audio/blob/audio-05/README.md) | Positional Audio |
+| [audio-06](https://github.com/IGME-330-01-2235/w4m-example-audio/blob/audio-06/README.md) | Some Animation |

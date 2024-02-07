@@ -44,7 +44,6 @@ h2 {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: black;
   position: fixed;
 }
 
@@ -52,4 +51,73 @@ h2 {
   position: relative;
   top: 50px;
   text-align: center;
+}
+
+.lower, .upper {
+  width: 50px;
+  height: 25px;
+  background-color: peachpuff;
+  border: 1px solid burlywood;
+  position: absolute;
+  left: 0;
+}
+
+.lower {
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  top: 25px
+}
+
+.upper {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  height: 40px;
+  top: 0;
+}
+
+/* You can use :before/:after to get some extra elements without needing extra markup */
+.eyes:before, .eyes:after {
+  /* styles common to both eyes */
+  content: '';
+  display: block;
+  width: 6px;
+  height: 10px;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+}
+.eyes:before {
+  /* the left eye */
+  top: 20px;
+  left: 15px;
+}
+.eyes:after {
+  /* the right eye */
+  top: 20px;
+  right: 15px;
+}
+
+.lbrow, .rbrow {
+  /* styles common to both eyebrows */
+  content: '';
+  display: block;
+  width: 10px;
+  border: 1px solid black;
+  position: absolute;
+}
+.lbrow {
+  top: 14px;
+  left: 12px;
+  transform: rotate(-15deg);
+}
+.rbrow {
+  top: 14px;
+  right: 12px;
+  transform: rotate(9deg);
+}
+
+.no-mouth .upper, .no-mouth .lower{
+ background-color: black;
+ border: none;
+ height: 25px;
 }

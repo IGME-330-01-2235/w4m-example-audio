@@ -1,7 +1,9 @@
-# Individual Part Volumes
+# Audio Visualizer
 
-Now we can reap the benefits of the refactor.
+In `Part.ts` we add an `AnalyserNode`, `bars` (an array of span elements), and the `visualizerMarkup` (parent of the spans).
 
-In `Part.ts` we can add a GainNode, which will control the volume for that specific part. We also add some extra HTML in `expandMarkup()` to make a label, range input, and event listener for the Part.
+Each frame, we ask the Analyser for audio data, and update each of the bars.
 
-And because we did all this in the class, we only had to write it once for all four parts!
+Try changing L27 `this.analyserNode.fftSize = 2048` to a different power of 2 and see what happens.
+
+Try using the toggle comment on L89 (make it read //* or /* to see different code active) - this switches between FrequencyData and TimeDomainData displays.
